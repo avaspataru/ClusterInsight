@@ -1,0 +1,33 @@
+
+.filemanager{
+  background-color: white;
+  width:18%;
+  height: -webkit-fill-available;
+  float:left;
+  margin-right:1%;
+
+}
+
+
+.settingsmanager{
+  background-color: white;
+  width:30%;
+  min-height:-webkit-fill-available;
+  height:-webkit-fill-available;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  float:left;
+  margin-right:1%;
+
+}
+
+.report{
+  background-color: white;
+  width:48%;
+  margin-left: 1%;
+  height: -webkit-fill-available;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  float:left;
+
+}

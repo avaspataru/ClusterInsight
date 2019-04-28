@@ -1,0 +1,173 @@
+
+
+<mat-spinner *ngIf="isloading" [diameter]="100"></mat-spinner>
+
+<div *ngIf="!isloading">
+<button class="refresh" (click)="update_similarity()"><mat-icon>refresh</mat-icon></button>
+<button class="download" (click)="download()"><mat-icon>cloud_download</mat-icon></button>
+
+<h2> Report on cancer cell classification </h2>
+<br>
+
+
+<h4>Abstract</h4>
+<p *ngIf="analyse_pre && analyse_post"> This report will look at two sets of data. We will present some information about the top N marker genes in each type and attempt to compare the types identified in each dataset.</p>
+<p *ngIf="analyse_pre && !analyse_post">This report will look at one dataset. We will present some information about the top N marker genes in each identified type.</p>
+<p *ngIf="!analyse_pre && analyse_post">This report will look at one dataset. We will present some information about the top N marker genes in each identified type.</p>
+<p *ngIf="!analyse_pre && !analyse_post">Please select datasets to investigate.</p>
+
+<h4 *ngIf="(data_info.length>1)"> Data information </h4>
+<p *ngIf="(data_info!='')">{{data_info}}<p>
+
+<h4  *ngIf="analyse_pre && analyse_post"> Similarity colour map: </h4>
+<div *ngIf="analyse_pre && analyse_post" class="sim_matrix">
+<mat-grid-list rowHeight=40 cols=8>
+  <mat-grid-tile colspan=1 rowspan=1 [style.background]="get_color_code(i)" *ngFor="let i of [0,10,20,30,40,50,60,70]">
+    {{i}}%
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
+
+
+<h4 *ngIf="analyse_pre && analyse_post">Similarity {{label_set1}} vs. {{label_set2}} [top {{similarity_n}} marker genes]: </h4>
+<div class="wrapper">
+    <div class="labels" *ngIf="analyse_pre && analyse_post" >
+      <mat-grid-list rowHeight=40 cols=1>
+        <mat-grid-tile colspan=1 rowspan=1 [style.background]="white">
+          .
+        </mat-grid-tile>
+        <mat-grid-tile colspan=1 rowspan=1 [style.background]="white" *ngFor="let i of pre_clusters">
+          {{label_set1}}_{{i}}
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div class="rest">
+    <div *ngIf="analyse_pre && analyse_post" class="sim_matrix">
+    <mat-grid-list rowHeight=40 cols="{{post_clusters_no}}">
+      <mat-grid-tile colspan=1 rowspan=1 [style.background]="white" *ngFor="let i of post_clusters">
+        {{label_set2}}_{{i}}
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+    <div *ngIf="analyse_pre && analyse_post" class="sim_matrix">
+    <mat-grid-list rowHeight=40 cols="{{post_clusters_no}}">
+      <mat-grid-tile colspan=1 rowspan=1 [style.background]="get_color(i)" *ngFor="let item of losses; index as i;">
+        {{item}} ({{matches[i]}}%)
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+    </div>
+</div>
+
+
+
+
+<h4 *ngIf="analyse_pre && analyse_post">Similarity {{label_set2}} vs. {{label_set1}} [top {{similarity_n}} marker genes]: </h4>
+<div class="wrapper">
+    <div class="labels" *ngIf="analyse_pre && analyse_post" >
+      <mat-grid-list rowHeight=40 cols=1>
+        <mat-grid-tile colspan=1 rowspan=1 [style.background]="white">
+          .
+        </mat-grid-tile>
+        <mat-grid-tile colspan=1 rowspan=1 [style.background]="white" *ngFor="let i of post_clusters">
+          {{label_set2}}_{{i}}
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div class="rest">
+    <div *ngIf="analyse_pre && analyse_post" class="sim_matrix">
+    <mat-grid-list rowHeight=40 cols="{{pre_clusters_no}}">
+      <mat-grid-tile colspan=1 rowspan=1 [style.background]="white" *ngFor="let i of pre_clusters">
+        {{label_set1}}_{{i}}
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+    <div *ngIf="analyse_pre && analyse_post" class="sim_matrix">
+    <mat-grid-list rowHeight=40 cols="{{pre_clusters_no}}">
+      <mat-grid-tile colspan=1 rowspan=1 [style.background]="get_rev_color(i)" *ngFor="let item of rev_losses; index as i;">
+        {{item}} ({{rev_matches[i]}}%)
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+    </div>
+</div>
+
+
+
+<h4 *ngIf="analyse_pre || analyse_post">Cluster sizes: </h4>
+<div class="wrapper">
+<div class="col" *ngIf="analyse_pre">
+  <div class="justt" *ngFor="let cluster of pre_clusters">
+    <p>{{label_set1}}_{{cluster}} - {{pre_cluster_sizes[cluster]}} cells.</p>
+  </div>
+</div>
+<div class="col" *ngIf="analyse_post">
+  <div class="justt" *ngFor="let cluster of post_clusters">
+    <p>{{label_set2}}_{{cluster}} - {{post_cluster_sizes[cluster]}} cells.</p>
+  </div>
+</div>
+</div>
+
+<h4 *ngIf="analyse_pre || analyse_post">Most expressed genes: </h4>
+<div *ngIf="analyse_pre || analyse_post">
+<p>These are the top M most expressed genes for each cluster with the raw average expression. The average expressions are calculated from the raw data, avergaed over the cluster size and scaled by library size.</p>
+<p>To scale by library size, the numbers have been divided by the total number of reads in the entire dataset and then multiplied by the constant 100000.<p>
+
+<div class="wrapper">
+<div class="col">
+<div  *ngFor="let cluster_id of pre_top_genes; let i = index">
+  <p class="smallh">{{label_set1}}_{{i}}:</p>
+  <div class="justt" *ngFor="let gene of cluster_id">
+  <p>{{gene}}:{{pre_top_genes_dict[i][gene].toFixed(2)}}</p>
+  </div>
+</div>
+</div>
+<div class="col">
+<div *ngFor="let cluster_id of post_top_genes; let i = index">
+  <p class="smallh">{{label_set2}}_{{i}}:</p>
+  <div class="justt" *ngFor="let gene of cluster_id">
+  <p>{{gene}}:{{post_top_genes_dict[i][gene].toFixed(2)}}</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<h4 *ngIf="analyse_pre || analyse_post">Raw average expression of genes: </h4>
+<p> NA means that the selected gene is not a marker for the specified cluster. </p>
+<div *ngIf="analyse_pre||analyse_post">
+<div *ngFor="let gene of show_for_genes">
+  <p class="smallh">{{gene}}:</p>
+  <span *ngFor="let expr of gene_expr_dict[gene]; let i = index;">{{get_cluster_id(i)}}:{{get_express(expr)}};   </span>
+</div>
+</div>
+
+<h4 *ngIf="analyse_pre"> Marker Genes - {{label_set1}}</h4>
+<div class="cluster_info" *ngFor="let cluster of pre_clusters">
+  <h5>{{label_set1}}_{{cluster}}:</h5>
+  <div class="gene_info" *ngFor="let gene of pre_clusters_dict[cluster]">
+    <p>{{gene}} = {{gene_defs[gene]}}</p>
+  </div>
+</div>
+
+<h4 *ngIf="analyse_post"> Marker Genes - {{label_set2}}</h4>
+<div class="cluster_info" *ngFor="let cluster of post_clusters">
+  <h5>{{label_set2}}_{{cluster}}:</h5>
+  <div class="gene_info" *ngFor="let gene of post_clusters_dict[cluster]">
+    <p>{{gene}} = {{gene_defs[gene]}}</p>
+  </div>
+</div>
+
+<h4 *ngIf="analyse_pre && analyse_post">Genes common to {{label_set1}} and {{label_set2}}:</h4>
+<div class="cluster_info" *ngIf="common_genes.length>0">
+  <div class="gene_info" *ngFor="let gene of common_genes">
+    <p>{{gene}} in {{label_set1}}_{{common_genes[gene].item1}} and in {{label_set2}}_{{common_genes[gene].item2}}</p>
+  </div>
+</div>
+<div class="cluster_info" *ngIf="common_genes.length==0 && analyse_pre && analyse_post">
+  <p>No common marker genes accross any clusters from {{label_set1}} to {{lael_set2}}.</p>
+</div>
+</div>

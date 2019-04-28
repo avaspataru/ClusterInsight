@@ -1,0 +1,129 @@
+.header{
+  background-color:#557A95;
+  margin:0px;
+  height:80px;
+}
+
+h2{
+  padding-top: 25px;
+  padding-left: 10px;
+  margin: 0px;
+  text-align: left;
+}
+
+p{
+  padding-top: 25px;
+  padding-left: 10px;
+  margin: 0px;
+  text-align: left;
+  display: inline-block;
+}
+
+.label{
+  padding-top:0px;
+  text-align:left;
+}
+
+h4{
+  padding-left: 10px;
+  margin-bottom: 0px;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+
+a:hover{
+  font-weight:bold;
+
+}
+
+mat-icon{
+  margin-top: 25px;
+margin-left: 10px;
+}
+
+.section{
+  display: flex;
+  align-items: center;
+  margin-bottom:20px;
+  margin-top:-5px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+hr{
+  margin: 5px;
+height: 1.5px;
+background-color: #557A95;
+}
+
+.custom-file-input::before {
+  content: 'Select DGE matrix.';
+  display: inline-block;
+  background: white;
+  border: 1px solid #557A95;
+  border-radius: 3px;
+  padding: 5px 8px;
+  margin-left:10px;
+  margin-right:20px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  font-weight: 700;
+  font-size: 10pt;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+  background-color:#557A95;
+  border:1px solid white;
+  color: white;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.myupload{
+  background: white;
+  height: 30px;
+  /* text-align: left; */
+  padding: 0px;
+  margin-left: 10px;
+  padding-top:10px;
+  padding-bottom:10px;
+  border:0px;
+}
+
+.myupload mat-icon{
+  margin:0px;
+  padding:0px;
+  margin-top: -7px;
+margin-left: 5px;
+}
+
+.upload {
+  padding-top:0px;
+
+}
+
+.myupload p{
+  padding-top: 0px;
+padding-left: 0px;
+margin: 0px;
+text-align: left;
+display: inline-block;
+}
+
+.choosefile{
+  margin-left:10px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.upload:hover{
+  font-weight: bold;
+}

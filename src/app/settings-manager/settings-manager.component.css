@@ -1,0 +1,74 @@
+.header{
+  background-color:#557A95;
+  margin:0px;
+  height:80px;
+}
+
+h2{
+  padding-top: 25px;
+  padding-left: 10px;
+  margin: 0px;
+  text-align: left;
+}
+
+.genes_list{
+  margin-left:15px;
+}
+
+.genes{
+  display:inline;
+}
+
+h4{
+  padding-left: 15px;
+  margin-bottom: 0px;
+}
+
+.checkbox{
+  margin-left:15px;
+  display:block;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+textarea{
+  margin-top:10px;
+  margin-left:15px;
+  padding-top:5px;
+  padding-bottom:5px;
+  width: 90%;
+  min-height: 50px;
+  text-align: left;
+  display:flex;
+}
+
+
+hr{
+  margin-top:10px;
+  margin: 5px;
+height: 1.5px;
+background-color: #557A95;
+}
+
+.inputs{
+  padding:5px;
+  margin-left:15px;
+  width:100%;
+}
+
+.inputs p{
+  display:inline;
+  width: 50px;
+}
+
+.inputs input{
+  display:inline;
+  margin-left:10px;
+  width:50px;
+}
+
+.inputs button{
+  display:inline;
+  margin-left:10px;
+  width:50px;
+}

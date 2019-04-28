@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
+
+.mat-checkbox-inner-container{
+  border: 0.5px solid black !important;
+}
+
+.mat-form-field-underline{
+  color:black !important;
+}
+
+body{
+  height: -webkit-fill-available;
+  background: #C2CAD0;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+}

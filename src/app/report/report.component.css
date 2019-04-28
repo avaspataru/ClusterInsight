@@ -1,0 +1,102 @@
+h2{
+
+  margin-top: 25px;
+  text-align: center;
+}
+
+.smallh{
+  display: inline-block;
+width: -webkit-fill-available;
+font-weight:bold;
+}
+
+.justt{
+  display: inline-block;
+width: -webkit-fill-available;
+line-height: 5%;
+}
+
+span{
+  margin-left:20px;
+}
+
+.wrapper{
+  display:flex;
+  width:-webkit-fill-available;
+}
+.col{
+  display: block;
+width: 50%;
+}
+
+.labels{
+  display:block;
+  width:10%;
+}
+
+.rest{
+  display:block;
+  width:95%;
+}
+
+h4{
+  margin-left:20px;
+  float:left;
+  text-align:left;
+  font-size:15px;
+  font-weight: bold;
+  display:block;
+  width:100%;
+}
+p{
+  margin-left: 20px;
+  margin-right:20px;
+  font-weight: normal;
+  font-size: 15px;
+  float:left;
+  text-align:justify;
+}
+
+.refresh{
+  float:left;
+  margin-top:8px;
+  margin-left:10px;
+  background-color: white;
+  border: 0px;
+  display:inline;
+}
+
+.download{
+  float:left;
+  margin-top:8px;
+  margin-left:15px;
+  background-color: white;
+  border: 0px;
+  display:inline;
+}
+
+mat-spinner{
+  position:absolute;
+  align:center;
+  margin-left:18%;
+  margin-top:20%;
+}
+
+.cluster_info{
+  display:inline-block;
+  margin-left:20px;
+}
+
+.cluster_info h5{
+  display:inline;
+  text-align:left;
+}
+
+.sim_matrix{
+  margin-left:10px;
+  margin-right:10px;
+  float:left;
+  text-align:center;
+  display:block;
+  width:100%;
+}

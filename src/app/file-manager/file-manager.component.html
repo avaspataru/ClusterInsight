@@ -1,0 +1,81 @@
+<div class="header">
+<h2>File manager.</h2>
+</div>
+
+<div class="component">
+
+<script src="angular(.min).js"></script>
+<script src="ng-file-upload-shim(.min).js"></script> <!-- for no html5 browsers support -->
+<script src="ng-file-upload(.min).js"></script>
+
+<h4> Getting started</h4>
+<div class="section">
+  <mat-icon>cloud_download</mat-icon>
+  <p>  <a href="../../assets/getting-started.R" download> R script</a></p>
+</div>
+
+<hr/>
+
+<h4>Dataset 1</h4>
+<br />
+
+<p class="label">Upload cluster-gene:</p>
+<input title=" " type="file" ng2FileSelect [uploader]="pre_gene_uploader" class="choosefile"/>
+
+<div class="section">
+  <button type="button" class="myupload"
+    (click)="pre_gene_uploader.uploadAll()"
+    [disabled]="!pre_gene_uploader.getNotUploadedItems().length" >
+        <mat-icon>cloud_upload</mat-icon>
+  </button>
+  <p class="upload"> Upload</p>
+</div>
+
+<p class="label">Upload cluster-cell:</p>
+<input title=" " type="file" ng2FileSelect [uploader]="pre_cell_uploader" class="choosefile"/>
+
+<div class="section">
+  <button type="button" class="myupload"
+    (click)="pre_cell_uploader.uploadAll()"
+    [disabled]="!pre_cell_uploader.getNotUploadedItems().length" >
+        <mat-icon>cloud_upload</mat-icon>
+  </button>
+  <p class="upload"> Upload</p>
+</div>
+
+<hr/>
+
+
+
+
+
+
+
+<h4>Dataset 2</h4>
+<br />
+
+<p class="label">Upload cluster-gene:</p>
+<input title=" " type="file" ng2FileSelect [uploader]="post_gene_uploader" class="choosefile"/>
+
+<div class="section">
+  <button type="button" class="myupload"
+    (click)="post_gene_uploader.uploadAll()"
+    [disabled]="!post_gene_uploader.getNotUploadedItems().length" >
+        <mat-icon>cloud_upload</mat-icon>
+  </button>
+  <p class="upload"> Upload</p>
+</div>
+
+<p class="label">Upload cluster-cell:</p>
+<input title=" " type="file" ng2FileSelect [uploader]="post_cell_uploader" class="choosefile"/>
+
+<div class="section">
+  <button type="button" class="myupload"
+    (click)="post_cell_uploader.uploadAll()"
+    [disabled]="!post_cell_uploader.getNotUploadedItems().length" >
+        <mat-icon>cloud_upload</mat-icon>
+  </button>
+  <p class="upload"> Upload</p>
+</div>
+
+</div>

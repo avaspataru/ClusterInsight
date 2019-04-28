@@ -1,0 +1,39 @@
+<div class="header">
+<h2>Settings manager.</h2>
+</div>
+
+<h4>Present marker genes information for:</h4>
+<mat-checkbox class="checkbox" (change)="analyse_pre_click()">Dataset 1</mat-checkbox>
+<mat-checkbox class="checkbox" (change)="analyse_post_click()">Dataset 2</mat-checkbox>
+
+<h4 *ngIf="analyse_pre || analyse_post">Label datasets:</h4>
+<div class="inputs"> <p *ngIf="analyse_pre" >Dataset 1:</p><input *ngIf="analyse_pre" type="text" (change)="change_name_set1($event)" value="S1" /> </div>
+<div class="inputs"> <p *ngIf="analyse_post">Dataset 2: </p><input *ngIf="analyse_post" type="text" (change)="change_name_set2($event)"  value="S2"/> </div>
+
+
+
+
+<h4>Additional information about data:</h4>
+<textarea  placeholder="" (change)="add_data_info_change($event)"></textarea>
+
+<h4 *ngIf="(analyse_pre || analyse_post)">Number of marker genes to show (-1 if all): </h4>
+<div class="inputs"> <p *ngIf="analyse_pre" >{{name_set1}}: </p><input *ngIf="analyse_pre" type="number" (change)="change_pre_marker_n($event)" value="5" /> </div>
+<div class="inputs"> <p *ngIf="analyse_post">{{name_set2}}: </p><input *ngIf="analyse_post" type="number" (change)="change_post_marker_n($event)"  value="5"/> </div>
+
+<h4 *ngIf="(analyse_pre && analyse_post)">Number of marker genes for similarity (-1 if all): </h4>
+<div class="inputs"> <p *ngIf="analyse_pre && analyse_post" >N:</p><input *ngIf="analyse_pre&&analyse_post" type="number" (change)="change_similarity_n($event)" value="10" /> </div>
+
+<h4 *ngIf="(analyse_pre || analyse_post)">Number of top expressed genes to show: </h4>
+<div class="inputs"> <p *ngIf="analyse_pre" >Pre data:</p><input *ngIf="analyse_pre" type="number" (change)="change_pre_expr_n($event)" value="1" /> </div>
+<div class="inputs"> <p *ngIf="analyse_post">Post data: </p><input *ngIf="analyse_post" type="number" (change)="change_post_expr_n($event)"  value="1"/> </div>
+
+<h4 *ngIf="(analyse_pre || analyse_post)">Genes to show raw average expression for:</h4>
+<br/>
+<div class="inputs"  *ngIf="(analyse_pre || analyse_post)"><p>Selected: </p>
+<div class="genes" *ngFor="let gene of show_for_genes">
+  {{gene}};
+</div></div>
+<div class="genes_list" *ngIf="(analyse_pre || analyse_post)">
+ <div class="inputs"><p>Add gene:</p><input type="text" (change)="add_gene($event)" /><button mat-stroked-button (click)="undo_gene()">Undo</button> </div>
+
+</div>

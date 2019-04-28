@@ -1,0 +1,28 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="filemanager">
+  <app-file-manager></app-file-manager>
+</div>
+<div class="settingsmanager">
+  <app-settings-manager [analyse_pre]="analyse_pre" (change_pre)="change_pre()"
+        [analyse_post]="analyse_post" (change_post)="change_post()"
+        [data_info]="data_info" (add_data_info)="add_data_info($event)"
+        (pre_marker_no)="pre_marker_no_change($event)"
+         (post_marker_no)="post_marker_no_change($event)"
+         (pre_expr_no)="pre_expr_no_change($event)"
+         (post_expr_no)="post_expr_no_change($event)"
+         (similarity_n)="similarity_n_change($event)"
+         (show_for_genes_pop)="show_for_genes_pop()"
+         (show_for_genes_push)="show_for_genes_push($event)"
+         (change_label_set1)="change_label_set1($event)"
+         (change_label_set2)="change_label_set2($event)"></app-settings-manager>
+</div>
+<div class="report">
+  <app-report [data_info]="data_info" [analyse_pre]="analyse_pre" [analyse_post]="analyse_post"
+              [pre_marker_no]="pre_marker_no" [post_marker_no]="post_marker_no"
+              [similarity_n]="similarity_n"
+              [pre_expr_no]="pre_expr_no" [post_expr_no]="post_expr_no"
+              [show_for_genes]="show_for_genes"
+              [label_set1]="label_set1"
+              [label_set2]="label_set2"
+              (download_event)="download()"></app-report>
+</div>
