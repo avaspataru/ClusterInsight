@@ -4,6 +4,8 @@ Application which automatically generates a report for explaining the classifica
 ## What it does 
 Based on user uploaded files (containing the cell-type classification), and some user preferences, it generates a report containing much-needed information for understanding the classification. The tool has sucessfully been used to make sense of various groupings by looking at the genes these express and their roles. 
 
+![screen](https://github.com/avaspataru/ClusterInsight/blob/master/screens/clusterinsights_screen.JPG)
+
 ## How it works 
 ClusterInsight has a number of features aimed at helping the user understand the data and the classification in a faster manner than having to manually write scripts to compute certain applications and research meaning of genes. These features are outlined below.
 
@@ -25,12 +27,14 @@ This feature focuses on helping the user investigate the marker genes of each cl
 
 The parameters for these features - the number of top marker genes to show and the gene names to check as markers - can be modified using the Settings manager. If the user wishes to display all marker genes for each cluster, rather than a number of top ones, they can set the parameter to value -1.
 
-To generate this section, the report writer sends a request to the back-end, which analyses the uploaded files and sends the results back to the front-end. The analysis of the files in the back-end is not complicated, since it only looks at expression of genes and aggregates results to then display. \\
+To generate this section, the report writer sends a request to the back-end, which analyses the uploaded files and sends the results back to the front-end. The analysis of the files in the back-end is not complicated, since it only looks at expression of genes and aggregates results to then display. 
 
 ### 4. Gene definitions.
 ClusterInsight automatically provides definitions for a number of top marker genes for each cluster. These are printed in the final section of the output report and the number representing how many genes to search for definitions can be adjusted in the Settings manager component.
 
-The system back-end contains a web-scraper for a known online gene library, named GeneCards. The application will send requests to the GeneCards library and retrieve the definition for the marker genes. In order to make this process faster and stop the application from sending numerous repetitive requests, all the definitions already retrieved are cached. ClusterInsight first requests the definition for each gene name to the caching system and if the gene was never queried before, it will send an HTTP request to GeneCards. The use-case diagram in figure \ref{fig:usecase} shows how the gene definitions are retrieved and the actions of the system.
+The system back-end contains a web-scraper for a known online gene library, named GeneCards. The application will send requests to the GeneCards library and retrieve the definition for the marker genes. In order to make this process faster and stop the application from sending numerous repetitive requests, all the definitions already retrieved are cached. ClusterInsight first requests the definition for each gene name to the caching system and if the gene was never queried before, it will send an HTTP request to GeneCards. The use-case diagram below shows how the gene definitions are retrieved and the actions of the system.
+
+![use_case](https://github.com/avaspataru/ClusterInsight/blob/master/screens/usecase.png)
 
 ## Technologies 
 The application was developed in two parts: front-end and back-end, which communicate through HTTP requests. One relevant hidden component of the system is the local cache, which holds the files uploaded by the user and a dictionary of gene definitions that were already retrieved from GeneCards.
