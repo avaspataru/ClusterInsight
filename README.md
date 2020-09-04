@@ -1,6 +1,8 @@
 # ClusterInsight
 Application which automatically generates a report for explaining the classification of cells from a DGE matrix, made via Seurat. It also automatically compares two classifications, cluster by cluster, based on their gene expressions and generates similarity numbers (based on a developed formula).
 
+Developed as part of the undergraduate research project 2018-2019.
+
 ## What it does 
 Based on user uploaded files (containing the cell-type classification), and some user preferences, it generates a report containing much-needed information for understanding the classification. The tool has sucessfully been used to make sense of various groupings by looking at the genes these express and their roles. 
 
