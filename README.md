@@ -4,6 +4,8 @@ Application which automatically generates a report for explaining the classifica
 ## What it does 
 Based on user uploaded files (containing the cell-type classification), and some user preferences, it generates a report containing much-needed information for understanding the classification. The tool has sucessfully been used to make sense of various groupings by looking at the genes these express and their roles. 
 
+The application can also be used on two datasets, case in which it will contrast them and output similarity measures along the two individual reports.
+
 ![screen](https://github.com/avaspataru/ClusterInsight/blob/master/screens/clusterinsights_screen.JPG)
 
 ## How it works 
